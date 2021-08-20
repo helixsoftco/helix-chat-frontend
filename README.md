@@ -12,9 +12,5 @@ Vue.use(HelixChat)
 ```
 
 ```html
-<helix-chat>
-    <template #body>
-      <component />
-    </template>
-  </helix-chat>
+<helix-chat />
 ```
