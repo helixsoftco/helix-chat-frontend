@@ -14,7 +14,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss">
 .h-box {
   max-width: 0;
   width: 100%;
@@ -24,26 +24,27 @@ export default {
   position: fixed;
   bottom: 70px;
   right: 70px;
-  background-color: rgba(169, 169, 169, 0.15);
+  background-color: $h-bg-box;
   transition: all ease-in-out .3s;
   padding: 1rem;
   overflow: hidden;
+
+  &__input-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 1rem;
+    border-top: 1px solid #404e81;
+  }
+
+  &.active {
+    height: 600px;
+    max-width: 360px;
+  }
 }
 
-.h-box.active {
-  height: 600px;
-  max-width: 360px;
-}
-
-.h-box__input-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  border-top: 1px solid #404e81;
-}
 </style>

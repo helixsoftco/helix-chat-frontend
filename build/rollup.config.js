@@ -9,6 +9,8 @@ import replace from '@rollup/plugin-replace';
 import babel from '@rollup/plugin-babel';
 import { terser } from 'rollup-plugin-terser';
 import minimist from 'minimist';
+// import scss from 'rollup-plugin-scss'
+// import postcss from 'rollup-plugin-postcss';
 
 // Get browserslist config and remove ie from es build targets
 const esbrowserslist = fs.readFileSync('./.browserslistrc')
@@ -42,6 +44,12 @@ const baseConfig = {
     },
     vue: {
       css: true,
+      // preprocessStyles: true,
+      // preprocessOptions: {
+      //   scss: {
+      //     additionalData: `@import 'src/index';`,
+      //   },
+      // },
       template: {
         isProduction: true,
       },
@@ -104,7 +112,7 @@ if (!argv.format || argv.format === 'es') {
             },
           ],
         ],
-      }),
+      })
     ],
   };
   buildFormats.push(esConfig);
@@ -169,3 +177,14 @@ if (!argv.format || argv.format === 'iife') {
 
 // Export config
 export default buildFormats;
+
+// export default {
+//   input: 'src/index.js',
+//   output: {
+//     file: 'output.js',
+//     format: 'esm'
+//   },
+//   plugins: [
+//     scss() // will output compiled styles to output.css
+//   ]
+// }
