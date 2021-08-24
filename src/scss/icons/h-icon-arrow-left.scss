@@ -1,0 +1,9 @@
+.h-icon-arrow-left {
+  color: $h-icon-header;
+  display: flex;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
