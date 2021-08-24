@@ -28,7 +28,3 @@ export default /*#__PURE__*/{
     <h-floating-button :class="isBoxActive ?'box-activated': ''" @onClick="toggleBox" />
   </div>
 </template>
-
-<style scoped>
-
-</style>
