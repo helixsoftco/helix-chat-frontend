@@ -1,0 +1,65 @@
+.h-box {
+  max-width: 0;
+  width: 100%;
+  height: 0;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .05);
+  border-radius: 10px;
+  position: fixed;
+  bottom: 70px;
+  right: 70px;
+  background-color: $h-bg-box;
+  transition: all ease-in-out .3s;
+  padding: 0 1rem 0;
+  overflow: hidden;
+  z-index: 998;
+
+  .h-chat {
+    height: 100%;
+    transition: all ease-in-out .3s;
+    transform: translateX(110%);
+
+    &.active {
+      transform: translateX(0);
+      transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    }
+
+    &__header {
+      padding: 1rem 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    &__input-container {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      border-top: 1px solid #404e81;
+    }
+  }
+
+
+  .h-user {
+    color: #ffffff;
+    font-weight: bold;
+  }
+
+  &.active {
+    height: 600px;
+    max-width: 360px;
+  }
+
+  .h-icon-wrap {
+    width: 30px;
+    height: 30px;
+  }
+
+  @include media-breakpoint-down(sm) {
+    bottom: 45px;
+    right: 35px;
+  }
+}

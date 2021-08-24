@@ -1,0 +1,65 @@
+.h-box-body {
+  height: calc(100% - 170px);
+  width: 100%;
+  background-color: $h-bg-box-body;
+  border-radius: 6px;
+  overflow-y: auto;
+
+  &__chat {
+    height: 100%;
+    width: 100%;
+  }
+
+  .h-row {
+    padding: .8rem;
+    color: white;
+    display: grid;
+    font-size: .9rem;
+
+    &__input {
+      grid-template-columns: auto 80px;
+
+      &__message {
+        background-color: #25305A;
+        padding: .8rem 1rem;
+        border-radius: 6px;
+        grid-column-start: 1;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: -9px;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 12px solid #25305A;
+          border-left: 12px solid transparent;
+        }
+      }
+    }
+
+    &__output {
+      grid-template-columns: 80px auto;
+
+      &__message {
+        background-color: #f6355e;
+        padding: .8rem 1rem;
+        border-radius: 6px;
+        grid-column-start: 2;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          right: -8px;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 12px solid #f6355e;
+          border-right: 12px solid transparent;
+        }
+      }
+    }
+  }
+}

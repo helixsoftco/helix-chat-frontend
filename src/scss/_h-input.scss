@@ -1,0 +1,18 @@
+.h-input {
+  padding: 1rem;
+  background: #1C2140;
+  border: none;
+  font-size: 18px;
+  color: white;
+  width: 100%;
+  border-radius: 6px;
+
+  &:focus {
+    outline: none;
+  }
+
+  &::placeholder {
+    color: white;
+    opacity: .5;
+  }
+}
