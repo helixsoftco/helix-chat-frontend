@@ -3,7 +3,7 @@
   width: 100%;
   background: $h-bg-box-body;
   margin: auto;
-  border-radius: 6px;
+  border-radius: $h-contact-list-border-radius;
   overflow-y: auto;
   transform: translate(-110%, -104%);
   transition: all ease-in-out .3s;

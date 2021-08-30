@@ -1,3 +1,34 @@
-$h-bg-box: #25305A !default;
-$h-bg-box-body: #1C2140 !default;
-$h-icon-header: #ffffff !default;
+$h-border-radius: 6px !default;
+$h-primary-color: #25305A !default;
+$h-primary-color-light: #404e81 !default;
+$h-primary-color-dark: #1C2140 !default;
+$h-secondary-color: #f6355e !default;
+$h-white: #ffffff !default;
+
+$h-bg-box: $h-primary-color !default;
+$h-icon-header: $h-white !default;
+$h-box-border-radius: 10px !default;
+
+$h-bg-box-body: $h-primary-color-dark !default;
+$h-box-body-border-radius: $h-border-radius !default;
+$h-row-color: $h-white !default;
+$h-row-font-size: .9rem !default;
+$h-row-border-radius: $h-border-radius !default;
+$h-row-bg-input-message: $h-primary-color !default;
+$h-row-bg-output-message: $h-secondary-color !default;
+
+$h-contact-list-border-radius: $h-border-radius !default;
+$h-contact-list-item-bg-hover: $h-primary-color-light !default;
+$h-contact-list-item-color: $h-white !default;
+
+$h-box-user-color: $h-white !default;
+$h-box-user-font-weight: bold !default;
+
+$h-input-bg: $h-primary-color-dark !default;
+$h-input-color: $h-white !default;
+$h-input-placeholder-color: $h-white !default;
+$h-input-placeholder-opacity: .5 !default;
+$h-input-border-radius: $h-border-radius !default;
+
+$h-floating-button-bg: $h-white !default;
+$h-floating-button-bg-ping: $h-secondary-color !default;

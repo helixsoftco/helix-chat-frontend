@@ -2,7 +2,7 @@
   width: 80px;
   height: 80px;
   border: none;
-  background-color: white;
+  background-color: $h-floating-button-bg;
   border-radius: 50%;
   cursor: pointer;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, .05);
@@ -23,7 +23,7 @@
   .ping {
     width: 20px;
     height: 20px;
-    background-color: #f6355e;
+    background-color: $h-floating-button-bg-ping;
     position: absolute;
     border-radius: 50%;
     top: 5px;

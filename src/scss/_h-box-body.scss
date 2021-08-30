@@ -2,7 +2,7 @@
   height: calc(100% - 170px);
   width: 100%;
   background-color: $h-bg-box-body;
-  border-radius: 6px;
+  border-radius: $h-box-body-border-radius;
   overflow-y: auto;
 
   &__chat {
@@ -12,17 +12,17 @@
 
   .h-row {
     padding: .8rem;
-    color: white;
+    color: $h-row-color;
     display: grid;
-    font-size: .9rem;
+    font-size: $h-row-font-size;
 
     &__input {
       grid-template-columns: auto 80px;
 
-      &__message {
-        background-color: #25305A;
+      .h-row__message {
+        background-color: $h-row-bg-input-message;
         padding: .8rem 1rem;
-        border-radius: 6px;
+        border-radius: $h-row-border-radius;
         grid-column-start: 1;
         position: relative;
 
@@ -33,7 +33,7 @@
           bottom: 0;
           width: 0;
           height: 0;
-          border-bottom: 12px solid #25305A;
+          border-bottom: 12px solid $h-row-bg-input-message;
           border-left: 12px solid transparent;
         }
       }
@@ -42,8 +42,8 @@
     &__output {
       grid-template-columns: 80px auto;
 
-      &__message {
-        background-color: #f6355e;
+      .h-row__message {
+        background-color: $h-row-bg-output-message;
         padding: .8rem 1rem;
         border-radius: 6px;
         grid-column-start: 2;
@@ -56,7 +56,7 @@
           bottom: 0;
           width: 0;
           height: 0;
-          border-bottom: 12px solid #f6355e;
+          border-bottom: 12px solid $h-row-bg-output-message;
           border-right: 12px solid transparent;
         }
       }

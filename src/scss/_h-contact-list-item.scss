@@ -7,7 +7,7 @@
   align-items: center;
 
   &:hover {
-    background-color: #404e81;
+    background-color: $h-contact-list-item-bg-hover;
     cursor: pointer;
   }
 
@@ -26,7 +26,7 @@
   }
 
   &__name {
-    color: #ffffff;
+    color: $h-contact-list-item-color;
     font-weight: bold;
   }
 
