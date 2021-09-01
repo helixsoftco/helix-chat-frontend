@@ -9,6 +9,10 @@
   &:hover {
     background-color: $h-contact-list-item-bg-hover;
     cursor: pointer;
+
+    .h-contact-list-item--info__message {
+      color: $h-primary-color-dark;
+    }
   }
 
   &__thumbnail {
@@ -25,9 +29,21 @@
     }
   }
 
-  &__name {
-    color: $h-contact-list-item-color;
-    font-weight: bold;
+  &--info {
+    flex: 1;
+
+    &__name {
+      color: $h-contact-list-item-color;
+      font-weight: bold;
+    }
+
+    &__message {
+      width: 240px;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+      color: $h-primary-color-light;
+    }
   }
 
 }

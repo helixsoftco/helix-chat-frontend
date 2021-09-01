@@ -50,7 +50,7 @@ export default {
     },
     sendMessage(payload) {
       this.$emit("sendMessage", {text: payload, user_pk: this.currentDialog.other_user_id})
-    }
+    },
   },
 }
 </script>

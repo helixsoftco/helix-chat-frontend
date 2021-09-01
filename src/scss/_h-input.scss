@@ -1,18 +1,32 @@
-.h-input {
-  padding: 1rem;
-  background: $h-input-bg;
-  border: none;
-  font-size: 18px;
-  color: $h-input-color;
+.icon-wrapper{
   width: 100%;
-  border-radius: $h-input-border-radius;
+  position: relative;
 
-  &:focus {
-    outline: none;
-  }
+    .h-input {
+      padding: 1rem 4rem 1rem 1rem;
+      background: $h-input-bg;
+      border: none;
+      font-size: 18px;
+      color: $h-input-color;
+      width: 100%;
+      border-radius: $h-input-border-radius;
 
-  &::placeholder {
-    color: $h-input-placeholder-color;
-    opacity: $h-input-placeholder-opacity;
+      &:focus {
+        outline: none;
+      }
+
+      &::placeholder {
+        color: $h-input-placeholder-color;
+        opacity: $h-input-placeholder-opacity;
+      }
+    }
+
+  .h-icon-input {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    margin-top: -15px;
   }
 }
+

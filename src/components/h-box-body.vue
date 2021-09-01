@@ -1,6 +1,6 @@
 <template>
-  <div class="h-box-body">
-    <div class="h-box-body__chat">
+  <div class="h-box-body" ref="HBoxBody">
+    <div class="h-box-body__chat" ref="HBoxBodyChat">
       <div class="h-row" :class="menssage.out ? 'h-row__output' : 'h-row__input'" v-for="menssage in reverseMessages" :key="menssage.sent">
         <div class="h-row__message">{{ menssage.text }}</div>
       </div>
@@ -34,6 +34,9 @@ export default {
   },
   mounted() {
     this.filterMessages()
+    this.$nextTick(() => {
+      this.$refs.HBoxBody.scrollTop = this.$refs.HBoxBody.scrollHeight
+    })
   },
   methods: {
     filterMessages() {
@@ -43,7 +46,19 @@ export default {
   watch: {
     otherUserId() {
       this.filterMessages()
+      this.$nextTick(() => {
+        this.$refs.HBoxBody.scrollTop = this.$refs.HBoxBody.scrollHeight
+      })
     },
+    messages: {
+      deep: true,
+      handler() {
+        this.filterMessages()
+        this.$nextTick(() => {
+          this.$refs.HBoxBody.scrollTop = this.$refs.HBoxBody.scrollHeight
+        })
+      }
+    }
   },
 }
 </script>
