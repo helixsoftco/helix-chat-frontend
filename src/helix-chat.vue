@@ -33,6 +33,7 @@ export default /*#__PURE__*/{
   async created() {
     if (!this.access_token) {
       console.log("prop acces token", this.access_token);
+      console.log("prop base url", this.base_url);
       const {access_token} = await this.getAccessToken()
       console.log(process.env)
       console.log(access_token)
@@ -77,7 +78,7 @@ export default /*#__PURE__*/{
     },
     async fetchDialogs() {
       const baseUrl = process.env.VUE_APP_BASE_URL
-      const resp = await fetch(`${this.base_url}/dialogs/`, {
+      const resp = await fetch(`${this.base_url}dialogs/`, {
         method: 'GET',
         headers: {Authorization: "Bearer " + this.accessToken}
       })
@@ -86,7 +87,7 @@ export default /*#__PURE__*/{
     },
     async fetchMessages() {
       const baseUrl = process.env.VUE_APP_BASE_URL
-      const resp = await fetch(`${this.base_url}/messages/`, {
+      const resp = await fetch(`${this.base_url}messages/`, {
         method: 'GET',
         headers: {Authorization: "Bearer " + this.accessToken}
       })
