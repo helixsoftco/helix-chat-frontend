@@ -69,7 +69,7 @@ export default /*#__PURE__*/{
       const baseUrl = process.env.VUE_APP_BASE_URL
       const params = new FormData()
       params.append("grant_type", "password")
-      params.append("username", "admin2")
+      params.append("username", localStorage.getItem('username'))
       params.append("password", "admin")
       params.append("client_id", "03Z1U46wujpGV6TeBN0a4wWsNuRLdOy5b9Oc3kHx")
       const resp = await fetch(`${this.base_url}o/token/`, {method: "POST", body: params})
