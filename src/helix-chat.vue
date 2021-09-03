@@ -16,6 +16,10 @@ export default /*#__PURE__*/{
       type: String,
       require: true
     },
+    base_url: {
+      type: String,
+      require: true
+    },
   },
   data() {
     return {
@@ -28,11 +32,13 @@ export default /*#__PURE__*/{
   },
   async created() {
     if (!this.access_token) {
+      console.log("prop acces token", this.access_token);
       const {access_token} = await this.getAccessToken()
       console.log(process.env)
       console.log(access_token)
       this.accessToken = access_token
     } else {
+      console.log("prop acces token", this.access_token);
       this.accessToken = this.access_token
     }
 
@@ -65,13 +71,13 @@ export default /*#__PURE__*/{
       params.append("username", "admin2")
       params.append("password", "admin")
       params.append("client_id", "03Z1U46wujpGV6TeBN0a4wWsNuRLdOy5b9Oc3kHx")
-      const resp = await fetch(`${baseUrl}o/token/`, {method: "POST", body: params})
+      const resp = await fetch(`${this.base_url}o/token/`, {method: "POST", body: params})
       const data = await resp.json()
       return data
     },
     async fetchDialogs() {
       const baseUrl = process.env.VUE_APP_BASE_URL
-      const resp = await fetch(`${baseUrl}/dialogs/`, {
+      const resp = await fetch(`${this.base_url}/dialogs/`, {
         method: 'GET',
         headers: {Authorization: "Bearer " + this.accessToken}
       })
@@ -80,7 +86,7 @@ export default /*#__PURE__*/{
     },
     async fetchMessages() {
       const baseUrl = process.env.VUE_APP_BASE_URL
-      const resp = await fetch(`${baseUrl}/messages/`, {
+      const resp = await fetch(`${this.base_url}/messages/`, {
         method: 'GET',
         headers: {Authorization: "Bearer " + this.accessToken}
       })
