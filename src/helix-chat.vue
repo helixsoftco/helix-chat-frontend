@@ -31,7 +31,7 @@ export default /*#__PURE__*/{
     console.log(process.env)
     console.log(access_token)
     this.accessToken = access_token
-    this.connection = new WebSocket(`ws://${window.location.hostname}:8000/chat_ws/`, ["token", access_token])
+    this.connection = new WebSocket(`wss://global-games.dev.altix.co/chat_ws?param=1&token=${access_token}`)
     this.connection.onopen = (event) => {
       console.log(event)
       console.log("Successfully connected")
