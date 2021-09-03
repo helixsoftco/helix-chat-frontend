@@ -27,11 +27,17 @@ export default /*#__PURE__*/{
     };
   },
   async created() {
-    const {access_token} = await this.getAccessToken()
-    console.log(process.env)
-    console.log(access_token)
-    this.accessToken = access_token
-    this.connection = new WebSocket(`wss://global-games.dev.altix.co/chat_ws?param=1&token=${access_token}`)
+    if (!this.access_token) {
+      const {access_token} = await this.getAccessToken()
+      console.log(process.env)
+      console.log(access_token)
+      this.accessToken = access_token
+    } else {
+      this.accessToken = this.access_token
+    }
+
+    
+    this.connection = new WebSocket(`wss://global-games.dev.altix.co/chat_ws?param=1&token=${this.accessToken}`)
     this.connection.onopen = (event) => {
       console.log(event)
       console.log("Successfully connected")
