@@ -2,7 +2,7 @@
   <div class="helix-chat">
     <input v-model="user" type="text" >
     <button @click="getAccessToken()">login</button>
-    <h-box @sendMessage="sendMessage" :dialogs="dialogs" :messages="messages" :class="isBoxActive ? 'active': ''"/>
+    <h-box @sendMessage="sendMessage" @readMessage="readMessage" :dialogs="dialogs" :messages="messages" :class="isBoxActive ? 'active': ''"/>
     <h-floating-button :class="isBoxActive ?'box-activated': ''" @onClick="toggleBox"/>
   </div>
 </template>
@@ -94,7 +94,13 @@ export default /*#__PURE__*/{
       this.messages = json.data
     },
     sendMessage(payload) {
+      //{text, user_pk, random_id, msg_type}
       this.connection.send(JSON.stringify({...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3}))
+    }, 
+    readMessage(payload) {
+      console.log("final read", payload)
+      //{user_pk, message_id, msg_type}
+      this.connection.send(JSON.stringify({...payload, msg_type: 6}))
     }
   },
 };

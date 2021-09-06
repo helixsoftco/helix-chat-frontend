@@ -2,7 +2,7 @@
   <div class="h-box-body" ref="HBoxBody">
     <div class="h-box-body__chat" ref="HBoxBodyChat">
       <div class="h-row" :class="menssage.out ? 'h-row__output' : 'h-row__input'" v-for="menssage in reverseMessages" :key="menssage.sent">
-        <div class="h-row__message">{{ menssage.text }}</div>
+        <div class="h-row__message">{{ menssage.text }} {{ menssage.id }} {{ menssage.read }}</div>
       </div>
     </div>
   </div>

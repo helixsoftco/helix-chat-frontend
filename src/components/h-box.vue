@@ -5,7 +5,7 @@
         <div @click="showChat" class="h-icon-wrap">
           <h-arrow-left />
         </div>
-        <div v-if="currentDialog" class="h-user">{{currentDialog.username}}</div>
+        <div v-if="currentDialog" class="h-user">{{currentDialog.username}} test</div>
       </div>
       <h-box-body v-if="currentDialog && messages.length" :messages="messages" :otherUserId="currentDialog.other_user_id" />
       <div class="h-chat__input-container">
@@ -42,6 +42,9 @@ export default {
   },
   methods: {
     getDialog(dialog) {
+      console.log("Ultimo mensaje", this.messages[0].id)
+      console.log("cambio de dialogo")
+      this.readMessage({user_pk: dialog.other_user_id, })
       this.currentDialog = dialog
       this.isChatActive = true
     },
@@ -51,6 +54,11 @@ export default {
     sendMessage(payload) {
       this.$emit("sendMessage", {text: payload, user_pk: this.currentDialog.other_user_id})
     },
+    readMessage(payload) {
+      console.log("readMessage", payload)
+      //{user_pk, message_id, msg_type}
+      this.$emit("readMessage", payload)
+    }
   },
 }
 </script>
