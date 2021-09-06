@@ -21,7 +21,7 @@
 
       .h-row__message {
         background-color: $h-row-bg-input-message;
-        padding: .8rem 1rem;
+        padding: 0.8rem 1rem .5rem;
         border-radius: $h-row-border-radius;
         grid-column-start: 1;
         position: relative;
@@ -36,6 +36,12 @@
           border-bottom: 12px solid $h-row-bg-input-message;
           border-left: 12px solid transparent;
         }
+
+        &__date {
+          margin: 5px 0 0 0;
+          text-align: end;
+          font-size: 13px;
+        }
       }
     }
 
@@ -44,7 +50,7 @@
 
       .h-row__message {
         background-color: $h-row-bg-output-message;
-        padding: .8rem 1rem;
+        padding: 0.8rem 1rem .5rem;
         border-radius: 6px;
         grid-column-start: 2;
         position: relative;
@@ -58,6 +64,12 @@
           height: 0;
           border-bottom: 12px solid $h-row-bg-output-message;
           border-right: 12px solid transparent;
+        }
+
+        &__date {
+          margin: 5px 0 0 0;
+          text-align: end;
+          font-size: 13px;
         }
       }
     }

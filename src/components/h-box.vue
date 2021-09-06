@@ -7,7 +7,7 @@
         </div>
         <div v-if="currentDialog" class="h-user">{{currentDialog.username}} test</div>
       </div>
-      <h-box-body v-if="currentDialog && messages.length" :messages="messages" :otherUserId="currentDialog.other_user_id" />
+      <h-box-body v-if="currentDialog && messages.length" :messages="messages" :otherUserId="currentDialog.other_user_id" @readMessage="readMessage" />
       <div class="h-chat__input-container">
         <h-input @sendMessage="sendMessage"/>
       </div>
@@ -42,22 +42,21 @@ export default {
   },
   methods: {
     getDialog(dialog) {
-      console.log("Ultimo mensaje", this.messages[0].id)
-      console.log("cambio de dialogo")
-      this.readMessage({user_pk: dialog.other_user_id, })
       this.currentDialog = dialog
       this.isChatActive = true
     },
     showChat() {
+      this.currentDialog = null
       this.isChatActive = false
     },
     sendMessage(payload) {
       this.$emit("sendMessage", {text: payload, user_pk: this.currentDialog.other_user_id})
     },
     readMessage(payload) {
-      console.log("readMessage", payload)
-      //{user_pk, message_id, msg_type}
-      this.$emit("readMessage", payload)
+      if(this.currentDialog) {
+        console.log(this.currentDialog)
+        this.$emit("readMessage", {...payload, user_pk: this.currentDialog.other_user_id})
+      }
     }
   },
 }
