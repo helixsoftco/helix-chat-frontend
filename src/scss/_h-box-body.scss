@@ -38,9 +38,10 @@
         }
 
         &__date {
-          margin: 5px 0 0 0;
-          text-align: end;
-          font-size: 13px;
+          margin: 3px 0 0;
+          font-size: 9px;
+          display: flex;
+          justify-content: flex-end;
         }
       }
     }
@@ -67,9 +68,10 @@
         }
 
         &__date {
-          margin: 5px 0 0 0;
-          text-align: end;
-          font-size: 13px;
+          margin: 3px 0 0;
+          font-size: 9px;
+          display: flex;
+          justify-content: flex-end;
         }
       }
     }
