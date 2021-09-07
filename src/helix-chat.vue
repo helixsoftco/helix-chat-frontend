@@ -96,6 +96,10 @@ export default /*#__PURE__*/{
     },
     sendMessage(payload) {
       this.connection.send(JSON.stringify({...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3}))
+    },
+    readMessage(payload) {
+      //{user_pk, message_id, msg_type}
+      this.connection.send(JSON.stringify({...payload, msg_type: 6}))
     }
   },
 };

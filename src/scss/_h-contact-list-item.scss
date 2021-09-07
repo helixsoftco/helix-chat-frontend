@@ -27,6 +27,15 @@
       width: 100%;
       height: 100%;
     }
+
+    .ping {
+      width: 12px;
+      height: 12px;
+      background-color: #f6355e;
+      position: absolute;
+      border-radius: 50%;
+      left: 46px;
+    }
   }
 
   &--info {
