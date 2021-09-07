@@ -13,8 +13,8 @@
 
 <script>
 import dayjs from 'dayjs';
-import duration from 'dayjs/plugin/duration'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/es'
 export default {
   name: "h-box-body",
   props: {
@@ -58,11 +58,9 @@ export default {
       this.$emit("readMessage", payload)
     },
     getDate(number){
-      dayjs.extend(duration)
       dayjs.extend(relativeTime)
-      dayjs.duration(1, "minutes").humanize()
-      const date = new dayjs(number)
-      return date
+      const date = new dayjs.unix(number).locale('es')
+      return date.fromNow()
     }
   },
   watch: {

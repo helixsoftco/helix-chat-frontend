@@ -5,7 +5,7 @@
         <div @click="showChat" class="h-icon-wrap">
           <h-arrow-left />
         </div>
-        <div v-if="currentDialog" class="h-user">{{currentDialog.username}} test</div>
+        <div v-if="currentDialog" class="h-user">{{currentDialog.username}}</div>
       </div>
       <h-box-body v-if="currentDialog && messages.length" :messages="messages" :otherUserId="currentDialog.other_user_id" @readMessage="readMessage" />
       <div class="h-chat__input-container">
@@ -54,7 +54,6 @@ export default {
     },
     readMessage(payload) {
       if(this.currentDialog) {
-        console.log(this.currentDialog)
         this.$emit("readMessage", {...payload, user_pk: this.currentDialog.other_user_id})
       }
     }

@@ -48,7 +48,6 @@ export default /*#__PURE__*/{
       const resp = await fetch(`${baseUrl}o/token/`, {method: "POST", body: params})
       const data = await resp.json()
       this.token = data.access_token
-      console.log(data)
       this.connectWithSockets()
       return data
     },
@@ -98,7 +97,6 @@ export default /*#__PURE__*/{
       this.connection.send(JSON.stringify({...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3}))
     }, 
     readMessage(payload) {
-      console.log("final read", payload)
       //{user_pk, message_id, msg_type}
       this.connection.send(JSON.stringify({...payload, msg_type: 6}))
     }
