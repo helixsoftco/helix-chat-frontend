@@ -1,6 +1,6 @@
 <template>
   <div class="helix-chat">
-    <h-box @sendMessage="sendMessage" :dialogs="dialogs" :messages="messages" :class="isBoxActive ? 'active': ''"/>
+    <h-box @sendMessage="sendMessage" @readMessage="readMessage" :dialogs="dialogs" :messages="messages" :class="isBoxActive ? 'active': ''"/>
     <h-floating-button :class="isBoxActive ?'box-activated': ''" @onClick="toggleBox"/>
   </div>
 </template>

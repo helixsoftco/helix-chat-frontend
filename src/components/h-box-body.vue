@@ -2,13 +2,19 @@
   <div class="h-box-body" ref="HBoxBody">
     <div class="h-box-body__chat" ref="HBoxBodyChat">
       <div class="h-row" :class="menssage.out ? 'h-row__output' : 'h-row__input'" v-for="menssage in reverseMessages" :key="menssage.sent">
-        <div class="h-row__message">{{ menssage.text }}</div>
+        <div class="h-row__message">
+          {{ menssage.text }}
+          <p class="h-row__message__date">{{getDate(menssage.sent)}}</p>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime'
+import 'dayjs/locale/es'
 export default {
   name: "h-box-body",
   props: {
@@ -41,6 +47,20 @@ export default {
   methods: {
     filterMessages() {
       this.messagesFilteredByUser = this.messages.filter((m) => (m.out && (m.recipient === this.otherUserId)) || !m.out && (m.sender === this.otherUserId))
+      const lastMessage = this.messagesFilteredByUser[0]
+      if(!lastMessage.read && !lastMessage.out) {
+        this.readMessage({message_id: lastMessage.id})
+      }
+    },
+    readMessage(payload) {
+      console.log("readMessage", payload)
+      //{user_pk, message_id, msg_type}
+      this.$emit("readMessage", payload)
+    },
+    getDate(number){
+      dayjs.extend(relativeTime)
+      const date = new dayjs.unix(number).locale('es')
+      return date.fromNow()
     }
   },
   watch: {
