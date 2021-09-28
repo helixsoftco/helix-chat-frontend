@@ -1,29 +1,25 @@
 <template>
-  <input placeholder="Escribe un mensaje..." class="h-input" type="text">
+  <div class="icon-wrapper">
+    <input placeholder="Escribe un mensaje..." class="h-input" @keypress.enter="sendMessage" v-model="message" type="text">
+    <h-icon-send @click.native="sendMessage" class="h-icon-input" />
+  </div>
 </template>
 
 <script>
+import HIconSend from "../icons/h-icon-send";
 export default {
-  name: "h-input"
+  name: "h-input",
+  components: {HIconSend},
+  data() {
+    return {
+      message: ""
+    }
+  },
+  methods: {
+    sendMessage() {
+      this.$emit("sendMessage", this.message)
+      this.message = ""
+    }
+  },
 }
 </script>
-
-<style scoped>
-  .h-input {
-    padding: 1rem;
-    background: #25305A;
-    border: none;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    width: 100%;
-  }
-  .h-input:focus {
-    outline: none;
-  }
-
-  .h-input::placeholder {
-    font-weight: bold;
-    color: white;
-  }
-</style>

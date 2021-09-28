@@ -1,49 +1,63 @@
 <template>
   <div class="h-box">
-    <div class="h-box__input-container">
-      <h-input/>
+    <div class="h-chat" :class="isChatActive? 'active' : ''">
+      <div class="h-chat__header">
+        <div @click="showChat" class="h-icon-wrap">
+          <h-arrow-left />
+        </div>
+        <div v-if="currentDialog" class="h-user">{{currentDialog.username}}</div>
+      </div>
+      <h-box-body v-if="currentDialog && messages.length" :messages="messages" :otherUserId="currentDialog.other_user_id" @readMessage="readMessage" />
+      <div class="h-chat__input-container">
+        <h-input @sendMessage="sendMessage"/>
+      </div>
     </div>
+    <h-contact-list :dialogs="dialogs" :class="!isChatActive? 'active' : ''" @showChat="getDialog" @sendMessage="sendMessage"/>
   </div>
 </template>
 
 <script>
+import HArrowLeft from "../icons/h-icon-arrow-left";
 import HInput from "./h-input";
+import HBoxBody from "./h-box-body";
+import HContactList from "./h-contact-list";
+
 export default {
   name: "h-box",
-  components: {HInput}
+  components: {HContactList, HArrowLeft, HBoxBody, HInput},
+  props: {
+    dialogs: {
+      type: Array,
+      default: () => [],
+    },
+    messages: {
+      type: Array,
+      default: () => [],
+    },
+  },
+  data() {
+    return {
+      isChatActive: false,
+      currentDialog: null
+    }
+  },
+  methods: {
+    getDialog(dialog) {
+      this.currentDialog = dialog
+      this.isChatActive = true
+    },
+    showChat() {
+      this.currentDialog = null
+      this.isChatActive = false
+    },
+    sendMessage(payload) {
+      this.$emit("sendMessage", {text: payload, user_pk: this.currentDialog.other_user_id})
+    },
+    readMessage(payload) {
+      if(this.currentDialog) {
+        this.$emit("readMessage", {...payload, user_pk: this.currentDialog.other_user_id})
+      }
+    }
+  },
 }
 </script>
-
-<style scoped>
-.h-box {
-  max-width: 0;
-  width: 100%;
-  height: 0;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .05);
-  border-radius: 10px;
-  position: fixed;
-  bottom: 70px;
-  right: 70px;
-  background-color: rgba(169, 169, 169, 0.15);
-  transition: all ease-in-out .3s;
-  padding: 1rem;
-  overflow: hidden;
-}
-
-.h-box.active {
-  height: 600px;
-  max-width: 360px;
-}
-
-.h-box__input-container {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100px;
-  display: flex;
-  align-items: center;
-  padding: 1rem;
-  border-top: 1px solid #404e81;
-}
-</style>

@@ -17,37 +17,3 @@ export default {
   },
 }
 </script>
-
-<style scoped>
-.h-floating-button {
-  width: 80px;
-  height: 80px;
-  border: none;
-  background-color: white;
-  border-radius: 50%;
-  cursor: pointer;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .05);
-  position: fixed;
-  bottom: 40px;
-  right: 40px;
-  transition: all ease-in-out .3s;
-  z-index: 999;
-}
-
-.h-floating-button:hover {
-  transform: scale(1.1);
-}
-
-.h-floating-button.box-activated {
-  transform: scale(.8);
-}
-
-.ping {
-  width: 20px;
-  height: 20px;
-  background-color: #f6355e;
-  position: absolute;
-  border-radius: 50%;
-  top: 5px;
-}
-</style>

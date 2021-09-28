@@ -1,0 +1,79 @@
+.h-box-body {
+  height: calc(100% - 170px);
+  width: 100%;
+  background-color: $h-bg-box-body;
+  border-radius: $h-box-body-border-radius;
+  overflow-y: auto;
+
+  &__chat {
+    height: 100%;
+    width: 100%;
+  }
+
+  .h-row {
+    padding: .8rem;
+    color: $h-row-color;
+    display: grid;
+    font-size: $h-row-font-size;
+
+    &__input {
+      grid-template-columns: auto 80px;
+
+      .h-row__message {
+        background-color: $h-row-bg-input-message;
+        padding: 0.8rem 1rem .5rem;
+        border-radius: $h-row-border-radius;
+        grid-column-start: 1;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: -9px;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 12px solid $h-row-bg-input-message;
+          border-left: 12px solid transparent;
+        }
+
+        &__date {
+          margin: 3px 0 0;
+          font-size: 9px;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+
+    &__output {
+      grid-template-columns: 80px auto;
+
+      .h-row__message {
+        background-color: $h-row-bg-output-message;
+        padding: 0.8rem 1rem .5rem;
+        border-radius: 6px;
+        grid-column-start: 2;
+        position: relative;
+
+        &::before {
+          content: "";
+          position: absolute;
+          right: -8px;
+          bottom: 0;
+          width: 0;
+          height: 0;
+          border-bottom: 12px solid $h-row-bg-output-message;
+          border-right: 12px solid transparent;
+        }
+
+        &__date {
+          margin: 3px 0 0;
+          font-size: 9px;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+  }
+}

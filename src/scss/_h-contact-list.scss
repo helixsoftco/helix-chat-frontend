@@ -1,0 +1,15 @@
+.h-contact-list {
+  height: calc(100% - 3rem);
+  width: 100%;
+  background: $h-bg-box-body;
+  margin: auto;
+  border-radius: $h-contact-list-border-radius;
+  overflow-y: auto;
+  transform: translate(-110%, -104%);
+  transition: all ease-in-out .3s;
+
+  &.active {
+    transform: translate(0, -104%);
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+  }
+}
