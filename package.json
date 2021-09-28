@@ -1,6 +1,6 @@
 {
   "name": "helix-chat",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "description": "",
   "main": "dist/helix-chat.ssr.js",
   "browser": "dist/helix-chat.esm.js",
