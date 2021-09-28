@@ -1,6 +1,11 @@
 <template>
   <div class="h-contact-list">
-    <h-contact-list-item @click.native="selectContact(dialog)" :dialog="dialog" v-for="dialog in dialogs" :key="dialog.id" />
+    <h-contact-list-item
+      v-for="dialog in dialogs"
+      :key="dialog.id"
+      :dialog="dialog"
+      @click.native="selectContact(dialog)"
+    />
   </div>
 </template>
 
@@ -8,17 +13,17 @@
 import HContactListItem from "./h-contact-list-item";
 export default {
   name: "h-contact-list",
-  components: {HContactListItem},
+  components: { HContactListItem },
   props: {
     dialogs: {
       type: Array,
-      default: []
+      default: () => [],
     },
   },
   methods: {
     selectContact(dialog) {
-      this.$emit("showChat", dialog)
-    }
+      this.$emit("showChat", dialog);
+    },
   },
-}
+};
 </script>

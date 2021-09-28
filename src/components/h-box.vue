@@ -12,26 +12,27 @@
         <h-input @sendMessage="sendMessage"/>
       </div>
     </div>
-    <h-contact-list :dialogs="dialogs" :class="!isChatActive? 'active' : ''" @showChat="getDialog"/>
+    <h-contact-list :dialogs="dialogs" :class="!isChatActive? 'active' : ''" @showChat="getDialog" @sendMessage="sendMessage"/>
   </div>
 </template>
 
 <script>
+import HArrowLeft from "../icons/h-icon-arrow-left";
 import HInput from "./h-input";
 import HBoxBody from "./h-box-body";
-import HArrowLeft from "../icons/h-icon-arrow-left";
 import HContactList from "./h-contact-list";
+
 export default {
   name: "h-box",
   components: {HContactList, HArrowLeft, HBoxBody, HInput},
   props: {
     dialogs: {
       type: Array,
-      default: []
+      default: () => [],
     },
     messages: {
       type: Array,
-      default: []
+      default: () => [],
     },
   },
   data() {
