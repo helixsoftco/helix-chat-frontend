@@ -13,6 +13,7 @@
 <script>
 import HFloatingButton from "./components/h-floating-button";
 import HBox from "./components/h-box";
+import ReconnectingWebSocket from 'reconnecting-websocket';
 
 export default /*#__PURE__*/{ // eslint-disable-line
   name: "HelixChat",
@@ -37,7 +38,7 @@ export default /*#__PURE__*/{ // eslint-disable-line
   data() {
     return {
       isBoxActive: false,
-      connection: null,
+      socket: null,
       dialogs: [],
       messages: [],
     };
@@ -45,20 +46,25 @@ export default /*#__PURE__*/{ // eslint-disable-line
   computed: {},
   created() {
     if (this.accessToken) {
-      console.log("prop access dafasdfsadfads token", this.accessToken);
-      this.connection = new WebSocket(`${this.webSocketUrl}?token=${this.accessToken}`);
-      this.connection.onopen = (event) => {
-        console.log(event);
-        console.log("Successfully connected");
+      this.socket = new ReconnectingWebSocket(`${this.webSocketUrl}?token=${this.accessToken}`);
+      this.socket.onopen = (event) => {
+        // Successfully connected
+        console.log("Successfully connected", event); // eslint-disable-line
         this.fetchDialogs();
         this.fetchMessages();
       };
-      this.connection.onmessage = (event) => {
-        console.log(event);
-        this.fetchMessages();
-        this.fetchDialogs();
+      this.socket.onmessage = (event) => {
+        // Receiving messages
+        if (event.isTrusted) {
+          console.log("Receiving message", event);
+          this.fetchMessages();
+          this.fetchDialogs();
+        }
       };
-      this.connection.onerror = function (event) {
+      this.socket.onclose = (event) =>{
+        console.log("websocket closed", event)
+      }
+      this.socket.onerror = function (event) {
         console.error("Error en el WebSocket detectado:", event);
       };
     }
@@ -67,13 +73,24 @@ export default /*#__PURE__*/{ // eslint-disable-line
     toggleBox() {
       this.isBoxActive = !this.isBoxActive;
     },
+    getSocketState() {
+      if (this.socket.readyState === 0) {
+        return "Connecting..."
+      } else if (this.socket.readyState === 1) {
+        return "Connected"
+      } else if (this.socket.readyState === 2) {
+        return "Disconnecting..."
+      } else if (this.socket.readyState === 3) {
+        return "Disconnected"
+      }
+    },
     async fetchDialogs() {
       const resp = await fetch(`${this.baseUrl}dialogs/`, {
         method: "GET",
         headers: { Authorization: this.accessToken },
       });
       const json = await resp.json();
-      this.dialogs = json.data;
+      this.dialogs = json.results;
     },
     async fetchMessages() {
       const resp = await fetch(`${this.baseUrl}messages/`, {
@@ -81,14 +98,14 @@ export default /*#__PURE__*/{ // eslint-disable-line
         headers: { Authorization: this.accessToken },
       });
       const json = await resp.json();
-      this.messages = json.data;
+      this.messages = json.results;
     },
     sendMessage(payload) {
-      this.connection.send(JSON.stringify({ ...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3 }));
+      this.socket.send(JSON.stringify({ ...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3 }));
     },
     readMessage(payload) {
       // {user_pk, message_id, msg_type}
-      this.connection.send(JSON.stringify({ ...payload, msg_type: 6 }));
+      this.socket.send(JSON.stringify({ ...payload, msg_type: 6 }));
     },
   },
 };
