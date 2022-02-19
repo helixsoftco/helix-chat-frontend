@@ -1,1 +1,1 @@
-export { default as HelixChat } from './helix-chat';
+export { default as HelixChat } from "./helix-chat";

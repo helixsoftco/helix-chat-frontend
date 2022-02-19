@@ -11,11 +11,11 @@
   </div>
 </template>
 <script>
+import ReconnectingWebSocket from "reconnecting-websocket";
 import HFloatingButton from "./components/h-floating-button";
 import HBox from "./components/h-box";
-import ReconnectingWebSocket from 'reconnecting-websocket';
 
-export default /*#__PURE__*/{ // eslint-disable-line
+export default /*#__PURE__*/ { // eslint-disable-line
   name: "HelixChat",
   components: { HBox, HFloatingButton },
   props: {
@@ -28,12 +28,7 @@ export default /*#__PURE__*/{ // eslint-disable-line
       type: String,
       require: true,
       default: null,
-    },
-    baseUrl: {
-      type: String,
-      require: true,
-      default: null,
-    },
+    }
   },
   data() {
     return {
@@ -61,11 +56,11 @@ export default /*#__PURE__*/{ // eslint-disable-line
           this.fetchDialogs();
         }
       };
-      this.socket.onclose = (event) =>{
-        console.log("websocket closed", event)
-      }
+      this.socket.onclose = (event) => {
+        console.log("websocket closed", event);
+      };
       this.socket.onerror = function (event) {
-        console.error("Error en el WebSocket detectado:", event);
+        console.error("WebSocket Error detected:", event);
       };
     }
   },
@@ -75,30 +70,30 @@ export default /*#__PURE__*/{ // eslint-disable-line
     },
     getSocketState() {
       if (this.socket.readyState === 0) {
-        return "Connecting..."
+        return "Connecting...";
       } else if (this.socket.readyState === 1) {
-        return "Connected"
+        return "Connected";
       } else if (this.socket.readyState === 2) {
-        return "Disconnecting..."
+        return "Disconnecting...";
       } else if (this.socket.readyState === 3) {
-        return "Disconnected"
+        return "Disconnected";
       }
     },
     async fetchDialogs() {
-      const resp = await fetch(`${this.baseUrl}dialogs/`, {
+      const resp = await fetch('/dialogs/', {
         method: "GET",
         headers: { Authorization: this.accessToken },
       });
       const json = await resp.json();
-      this.dialogs = json.results;
+      this.dialogs = json.data;
     },
     async fetchMessages() {
-      const resp = await fetch(`${this.baseUrl}messages/`, {
+      const resp = await fetch('/messages/', {
         method: "GET",
         headers: { Authorization: this.accessToken },
       });
       const json = await resp.json();
-      this.messages = json.results;
+      this.messages = json.data;
     },
     sendMessage(payload) {
       this.socket.send(JSON.stringify({ ...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3 }));
