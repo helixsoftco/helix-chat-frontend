@@ -85,7 +85,7 @@ export default /*#__PURE__*/ { // eslint-disable-line
         headers: { Authorization: this.accessToken },
       });
       const json = await resp.json();
-      this.dialogs = json.data;
+      this.dialogs = json.results;
     },
     async fetchMessages() {
       const resp = await fetch('/messages/', {
@@ -93,7 +93,7 @@ export default /*#__PURE__*/ { // eslint-disable-line
         headers: { Authorization: this.accessToken },
       });
       const json = await resp.json();
-      this.messages = json.data;
+      this.messages = json.results;
     },
     sendMessage(payload) {
       this.socket.send(JSON.stringify({ ...payload, random_id: Math.round(Math.random() * -1000), msg_type: 3 }));

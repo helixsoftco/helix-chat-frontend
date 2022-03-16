@@ -67,7 +67,7 @@ export default {
     filterMessages() {
       this.messagesFilteredByUser = this.messages.filter((m) => (m.out && (m.recipient === this.otherUserId)) || !m.out && (m.sender === this.otherUserId))
       const lastMessage = this.messagesFilteredByUser[0]
-      if(!lastMessage.read && !lastMessage.out) {
+      if(lastMessage && !lastMessage.read && !lastMessage.out) {
         this.readMessage({message_id: lastMessage.id})
       }
     },
